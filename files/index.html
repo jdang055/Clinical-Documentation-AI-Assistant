@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinical Documentation AI</title>
+    <!-- Use Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Phosphor Icons for premium healthcare icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+    <!-- App Header containing Logo and Global Controls (Safe Mode) -->
+    <header class="app-header">
+        <div class="logo">
+            <i class="ph-fill ph-stethoscope"></i>
+            <h1>ClinicalNote AI</h1>
+        </div>
+        <div class="header-controls">
+            <!-- Safe Mode Toggle -->
+            <div class="toggle-container">
+                <span class="toggle-label">Fast Mode</span>
+                <label class="switch">
+                    <input type="checkbox" id="complianceToggle" checked>
+                    <span class="slider round"></span>
+                </label>
+                <span class="toggle-label">
+                    Safe Mode <i class="ph-fill ph-shield-check" style="color: var(--success); margin-left: 4px;"></i>
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <main class="app-container">
+        <!-- LEFT PANEL: Input Area -->
+        <section class="panel left-panel">
+            <div class="panel-header">
+                <h2><i class="ph ph-microphone-stage"></i> Doctor-Patient Transcript</h2>
+                <button id="btnLoadSample" class="btn btn-secondary">
+                    <i class="ph ph-file-text"></i> Load Sample Case
+                </button>
+            </div>
+            
+            <div class="editor-container">
+                <!-- contenteditable dive enables inline text highlighting -->
+                <div id="transcriptInput" class="custom-textarea" contenteditable="true" placeholder="Paste or type transcript here..."></div>
+            </div>
+
+            <div class="panel-footer">
+                <button id="btnGenerate" class="btn btn-primary btn-large">
+                    <i class="ph ph-magic-wand"></i> Generate Clinical Note
+                </button>
+            </div>
+        </section>
+
+        <!-- RIGHT PANEL: Note Output and AI Evaluation -->
+        <section class="panel right-panel">
+            <div class="panel-header">
+                <h2><i class="ph ph-clipboard-text"></i> Generated SOAP Note</h2>
+                <div class="action-buttons">
+                    <button id="btnCopy" class="btn btn-icon" title="Copy to EHR">
+                        <i class="ph ph-copy"></i> Copy
+                    </button>
+                    <button id="btnExportPdf" class="btn btn-icon" title="Export as PDF">
+                        <i class="ph ph-file-pdf"></i> PDF
+                    </button>
+                </div>
+            </div>
+            
+            <div class="note-container">
+                <!-- State 1: Empty -->
+                <div id="emptyState" class="empty-state">
+                    <i class="ph ph-file-dashed"></i>
+                    <p>Enter a transcript and click generate to build a SOAP note.</p>
+                </div>
+
+                <!-- State 2: Simulated AI Processing Loader -->
+                <div id="loadingState" class="loading-state hidden">
+                    <div class="spinner"></div>
+                    <p>Analyzing clinical entities...</p>
+                </div>
+
+                <!-- State 3: Content Output Container -->
+                <div id="soapContent" class="soap-content hidden">
+                    <div class="soap-section">
+                        <h3>Subjective</h3>
+                        <div id="soapSubjective" class="soap-text"></div>
+                    </div>
+                    <div class="soap-section">
+                        <h3>Objective</h3>
+                        <div id="soapObjective" class="soap-text"></div>
+                    </div>
+                    <div class="soap-section">
+                        <h3>Assessment</h3>
+                        <div id="soapAssessment" class="soap-text"></div>
+                    </div>
+                    <div class="soap-section">
+                        <h3>Plan</h3>
+                        <div id="soapPlan" class="soap-text"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Validation/Quality Panel below the SOAP note -->
+            <div class="quality-panel">
+                <h3><i class="ph ph-chart-bar"></i> Quality Evaluation</h3>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <span class="metric-title">Completeness</span>
+                        <span id="metricCompleteness" class="metric-value">--</span>
+                        <div class="progress-bar"><div id="barCompleteness" class="progress-fill"></div></div>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-title">Hallucination Risk</span>
+                        <span id="metricHallucination" class="metric-value status-badge badge-neutral">--</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-title">Clinical Accuracy</span>
+                        <span id="metricAccuracy" class="metric-value">--</span>
+                        <div class="progress-bar"><div id="barAccuracy" class="progress-fill"></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
