@@ -4,6 +4,7 @@ A premium, front-end web application simulating an enterprise healthcare SaaS to
 
 This project demonstrates clean architecture, dynamic DOM manipulation, and real-time Natural Language Processing (NLP) mock-logic. It takes aggressively unstructured doctor-patient transcripts and utilizes either a mathematical clustering algorithm or a live connection to the **Google Gemini Pro AI** to structure the output perfectly into a compliant SOAP note.
 
+![Issue Routing Architecture](screenshots/ClinicalAI_screenshot.png)
 
 ## ✨ Features
 - **Dynamic Data Highlighting:** Uses regular expressions with word boundary isolation to hunt down and visually color-code critical medical entities (medications, symptoms, diagnoses) instantly as the user types.
