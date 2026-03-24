@@ -12,9 +12,6 @@ This project demonstrates clean architecture, dynamic DOM manipulation, and real
 - **Native Print Export:** Employs specifically targeted `@media print` CSS directives to instantly hijack the active Document Object Model and layout a clean, PDF-ready medical record—safely hiding the interactive UI arrays.
 - **Bifurcated Model Architecture:** Runs 100% securely and locally via a simulated NLP classifier, but contains a live `fetch` endpoint fully structured to interface with actual LLMs.
 
-## 🚀 Live Demo
-**[Insert Your Live URL Here]**
-
 ## 🤖 Connect the Live Gemini AI (Optional)
 By default, this application safely falls back to a simulated mathematical parser so it requires absolutely zero installations or dependencies to run directly in your browser. However, the data pipeline is currently natively wired and ready to interact with live Google Generative AI endpoints!
 
